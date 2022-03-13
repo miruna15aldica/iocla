@@ -9,8 +9,12 @@
 
 int main() {
     int v[] = {0xCAFEBABE, 0xDEADBEEF, 0x0B00B135, 0xBAADF00D, 0xDEADC0DE};
-
-    (void) v;
-
+    unsigned char *show_char = (unsigned char *) &v;
+    unsigned int *show_int = (unsigned int *)&v;
+    for(int i = 0; i < sizeof(v) / sizeof(show_char); i++)
+        printf("%p -> 0x%x\n", show_char, *show_char);
+    for(int i = 0; i < sizeof(v) / sizeof(show_int); i++)
+        printf("%p -> 0x%x\n", show_int, *show_int);
+   
     return 0;
 }
