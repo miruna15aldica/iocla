@@ -4,7 +4,7 @@
 /* checks if the array is sorted */
 static int is_sorted(int a[], int n)
 {
-	int i;
+	size_t i;
 
 	for (i = 1; i < n; i++)
 		if (a[i] < a[i-1])
@@ -16,7 +16,7 @@ static int is_sorted(int a[], int n)
 /* shuffle an array */
 static void shuffle(int a[], int n)
 {
-	int i;
+	size_t i;
 	int t, r;
 
 	for (i = 0; i < n; i++) {
@@ -32,18 +32,19 @@ int main(void)
 	int numbers[] = {1, 13, 2,  5, 3, -7};
 	int i;
 
+
 	while (1) {
 		shuffle(numbers, 6);
 
 		if (is_sorted(numbers, 6))
+			goto close;
 
-		/* TODO use goto instead of break */
-		break;
 	}
 
+close:
 	for (i = 0; i < 6; i++)
 		printf("%d ", numbers[i]);
 	printf("\n");
 
-    return 0;
+    	return 0;
 }
