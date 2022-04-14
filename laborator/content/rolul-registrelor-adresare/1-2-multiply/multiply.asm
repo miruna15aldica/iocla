@@ -3,8 +3,8 @@
 ; https://en.wikibooks.org/wiki/X86_Assembly/Arithmetic
 
 section .data
-    num1 db 43
-    num2 db 39
+    num1 db 76
+    num2 db 134
     num1_w dw 1349
     num2_w dw 9949
     num1_d dd 134932
@@ -28,6 +28,29 @@ main:
     xor ebx, ebx
     mov bx, ax
     PRINTF32 `%hx\n\x0`, eax
+
+    ; Print results in dw
+    mov ax, num1_w
+    mov bx, num2_w
+    mul bx
+
+
+    ; Print results in hexa
+    PRINTF32 `%s\x0`, print_mesaj
+    xor ebx, ebx
+    mov bx, ax
+    PRINTF32 `%hx\n\x0`, eax
+    
+    ; Print results in dd
+    mov eax, dword[num1_w]
+    mov ebx, dword[num2_w]
+    mul ebx
+
+    ; Print results in hexa
+    PRINTF32 `%s\x0`, print_mesaj
+    xor ebx, ebx
+    mov bx, ax
+    PRINTF32 `%x\n\x0`, eax 
 
 
    ; TODO: Implement multiplication for dw and dd data types.
