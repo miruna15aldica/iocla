@@ -1,4 +1,5 @@
 %include "../utils/printf32.asm"
+%include "../utils/printf32.asm"
 
 section .data
     num dd 100
@@ -13,17 +14,19 @@ main:
     mov ebp, esp
 
     mov ecx, [num]     ; Use ecx as counter for computing the sum.
-    xor eax, eax       ; Use eax to store the sum. Start from 0.
+    xor ebx, ebx       ; Use eax to store the sum. Start from 0.
 
 add_to_sum:
-    add eax, ecx
+    mov eax, ecx
+    mul eax
+    add ebx, eax
     loop add_to_sum    ; Decrement ecx. If not zero, add it to sum.
 
     mov ecx, [num]
     PRINTF32 `%s\x0`, print_format1
     PRINTF32 `%u\x0`, ecx
     PRINTF32 `%s\x0`, print_format2
-    PRINTF32 `%u\n\x0`, eax
+    PRINTF32 `%u\n\x0`, ebx
 
     leave
     ret
