@@ -34,6 +34,8 @@ get_int:
     ; Do not modify them.
     push ebp
     mov ebp, esp
+    mov eax, [ebp + 8]
+    mov eax, [eax]
 
     ; The first argument is a pointer to the beginning of the structure, so you
     ; must use it to calculate the actual address of the data you want to get.
@@ -52,6 +54,9 @@ get_char:
     ; Do not modify them.
     push ebp
     mov ebp, esp
+    mov eax, [ebp + 8]
+    add eax, char_y
+    movzx eax, byte [eax]
 
     ; The first argument is a pointer to the beginning of the structure, so you
     ; must use it to calculate the actual address of the data you want to get.
@@ -70,6 +75,8 @@ get_string:
     ; Do not modify them.
     push ebp
     mov ebp, esp
+    mov eax, [ebp + 8]
+    add eax, string_s
 
     ; The first argument is a pointer to the beginning of the structure, so you
     ; must use it to calculate the actual address of the data you want to get.
@@ -88,6 +95,10 @@ set_int:
     ; Do not modify them.
     push ebp
     mov ebp, esp
+    mov eax, [ebp + 8]
+    mov edx, [ebp + 12]
+    add eax, int_x
+    mov [eax], edx
 
     ; The first argument is a pointer to the beginning of the structure, so you
     ; must use it to calculate the actual address of the data you want to set.
@@ -105,6 +116,10 @@ set_char:
     ; Do not modify them.
     push ebp
     mov ebp, esp
+    mov eax, [ebp + 8]
+    mov edx, [ebp + 12]
+    add eax, char_y
+    mov byte [eax], dl
 
     ; The first argument is a pointer to the beginning of the structure, so you
     ; must use it to calculate the actual address of the data you want to set.
@@ -122,7 +137,11 @@ set_string:
     ; Do not modify them.
     push ebp
     mov ebp, esp
-
+    mov eax, [ebp + 8]
+    mov edx, [ebp + 12]
+    add eax, string_s
+    pusha
+    
     ; The first argument is a pointer to the beginning of the structure, so you
     ; must use it to calculate the actual address of the data you want to set.
 
@@ -146,15 +165,15 @@ main:
     add esp, 4
 
     ;uncomment when get_int is ready
-    ;push eax
-    ;push int_format
-    ;call printf
-    ;add esp, 8
+    push eax
+    push int_format
+    call printf
+    add esp, 8
 
     movzx edx, byte [new_char]
-    ; movzx is the same as
-    ; xor edx, edx
-    ; mov dl, byte [new_char]
+    movzx is the same as
+    xor edx, edx
+    mov dl, byte [new_char]
     push edx
     push sample_obj
     call set_char
@@ -165,10 +184,10 @@ main:
     add esp, 4
 
     ;uncomment when get_char is ready
-    ;push eax
-    ;push char_format
-    ;call printf
-    ;add esp, 8
+    push eax
+    push char_format
+    call printf
+    add esp, 8
 
     mov edx, new_string
     push edx
@@ -181,10 +200,10 @@ main:
     add esp, 4
 
     ;uncomment when get_string is ready
-    ;push eax
-    ;push string_format
-    ;call printf
-    ;add esp, 8
+    push eax
+    push string_format
+    call printf
+    add esp, 8
 
     xor eax, eax
     leave
