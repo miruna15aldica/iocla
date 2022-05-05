@@ -34,7 +34,14 @@ L3:
     inc eax
 
 print:
+    pop edx
+    pop ebx
+  
 
+    PRINTF32 `gcd(%d\x0`, ebx
+    PRINTF32 `,%d)\x0`, edx
+    PRINTF32 ` = %d\n\x0)`, eax 
+    
     ; TODO 1: solve the 'Segmentation fault!' error
 
     ; TODO 2: print the result in the form of: "gdc(eax, edx)=7" with PRINTF32 macro
