@@ -12,7 +12,17 @@ section .text
 extern printf
 global main
 main:
-
+    push ARRAY_LEN
+    pop ecx ;am pus variabilele pe stiva
+push_elem:
+    push dword[input + 4*(ecx -1)]
+    loop push_elem
+    
+    push ARRAY_LEN
+    pop ecx
+pop_elem:
+    pop dword[output + 4*(ecx -1)]
+    loop pop_elem
     ; TODO push the elements of the array on the stack
     ; TODO retrieve the elements (pop) from the stack into the output array
 
