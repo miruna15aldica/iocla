@@ -19,6 +19,23 @@ main:
     mov eax, 0 ; counter used for array_1
     mov ebx, 0 ; counter used for array_2
     mov ecx, 0 ; counter used for the output array
+    sub esp, ARRAY_1_LEN
+    sub esp, ARRAY_2_LEN
+    sub esp, ARRAY_OUTPUT_LEN
+
+    mov byte [ebp - ARRAY_1_LEN], 27
+    mov byte [ebp - ARRAY_1_LEN + 1], 46
+    mov byte [ebp - ARRAY_1_LEN + 2], 55
+    mov byte [ebp - ARRAY_1_LEN + 3], 83
+    mov byte [ebp - ARRAY_1_LEN + 4], 84
+
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN], 1
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN + 1], 4
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN + 2], 21
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN + 3], 26
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN + 4], 59
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN + 5], 92
+    mov byte [ebp - ARRAY_1_LEN - ARRAY_2_LEN + 6], 105
 
 merge_arrays:
     mov dl, byte [array_1 + eax]
