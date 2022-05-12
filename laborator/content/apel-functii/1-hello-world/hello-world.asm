@@ -9,11 +9,11 @@ extern puts
 global main
 main:
     push ebp
-    mov ebp, esp
+    mov ebp, esp ; apel de functie
 
-    push msg
-    call puts
-    add esp, 4
+    push msg ;il afiseaza mesajul
+    call puts ; apelam functia
+    add esp, 4 ;restauram stiva
 
     leave
     ret
