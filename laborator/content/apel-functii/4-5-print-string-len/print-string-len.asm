@@ -2,10 +2,11 @@
 
 section .data
     mystring db "This is my string", 0
+    print_format db "String length is %d", 10, 0
 
 section .text
 
-extern puts
+;extern puts
 extern printf
 global main
 
@@ -17,14 +18,22 @@ main:
     xor ecx, ecx
 test_one_byte:
     mov bl, byte [eax]
-    test bl, bl
-    je out
     inc eax
     inc ecx
-    jmp test_one_byte
+    test bl, bl
+    ;je out
+    ;inc eax
+    ;inc ecx
+    jne test_one_byte
 
-out:
-    PRINTF32 `[PRINTF32]: %d\n[printf]: \x0`, ecx
+    dec ecx
+    push ecx
+    push print_format
+    call printf
+    add esp, 8
+
+;out:
+    ;PRINTF32 `[PRINTF32]: %d\n[printf]: \x0`, ecx
 
     leave
     ret
