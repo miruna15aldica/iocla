@@ -9,8 +9,20 @@ global main
 main:
     mov ebp, esp
 
+    push 0
+    push 1
+
     ; TODO - replace below instruction with the algorithm for the Fibonacci sequence
-    sub esp, NUM_FIBO * 4
+    ;sub esp, NUM_FIBO * 4
+
+    mov ecx, NUM_FIBO - 2
+
+fibonacci:
+    mov eax, [esp]
+    add eax, [esp + 4]
+    ;add eax, ebx
+    push eax
+    loop fibonacci
 
     mov ecx, NUM_FIBO
 print:
