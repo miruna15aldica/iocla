@@ -67,8 +67,13 @@ print_byte:
 
     pop ecx	; restore ecx
     inc ecx
-    cmp ecx, 64
+    cmp ecx, 84
     jl print_byte
+
+    mov byte [ebx + 64], 0xEF
+    mov byte [ebx + 65], 0xBE
+    mov byte [ebx + 66], 0xAD
+    mov byte [ebx + 67], 0xDE
 
     ; Print new line. C equivalent instruction is puts("").
     push null_string
