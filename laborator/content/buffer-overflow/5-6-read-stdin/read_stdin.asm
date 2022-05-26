@@ -3,7 +3,7 @@
 ;
 ; Fill buffer with data from standard input.
 ; Buffer is stored on the stack.
-;
+;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFLOW
 
 extern printf
 extern puts
@@ -76,6 +76,7 @@ print_byte:
     inc ecx
     cmp ecx, [ebp-72]
     jl print_byte
+    
 
     push null_string
     call puts
@@ -87,6 +88,6 @@ print_byte:
     push var_message_and_format
     call printf
     add esp, 8
-
+    
     leave
     ret
