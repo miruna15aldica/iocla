@@ -30,18 +30,18 @@ main:
     xor ecx, ecx
 fill_byte:
     mov dl, cl
-    inc dl
+    inc dl ;crestem valoarea lui dl cu cate o unitate
     mov byte [buffer+ecx], dl
     inc ecx
-    cmp ecx, len
+    cmp ecx, len ;cat timp ecx < lungime vector, continuam sa umplem byteul
     jl fill_byte
 
     ; Print data in buffer.
     push buffer_intro_message
     call printf
-    add esp, 4
+    add esp, 4 ;printam valorile
 
-    xor ecx, ecx
+    xor ecx, ecx ; eliberam registrul ecx
 print_byte:
     xor eax, eax
     mov al, byte[buffer+ecx]
